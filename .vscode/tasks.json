@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "serve-dist",
+      "type": "shell",
+      "command": "python3",
+      "args": ["-m", "http.server", "8000", "-b", "localhost"],
+      "options": {
+        "cwd": "${workspaceFolder}/dist"
+      },
+      "isBackground": true,
+      "dependsOn": ["build"],
+      "problemMatcher": {
+        "pattern": {
+          "regexp": ".+"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".+",
+          "endsPattern": "Serving HTTP on .* port 8000"
+        }
+      }
+    },
+    {
+      "label": "stop-serve-dist",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-lc",
+        "lsof -ti tcp:8000 | xargs -r kill"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

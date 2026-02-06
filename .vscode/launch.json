@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Server + Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8000/list.html",
+      "webRoot": "${workspaceFolder}/dist",
+      "preLaunchTask": "serve-dist",
+      "postDebugTask": "stop-serve-dist"
+    }
+  ]
+}
